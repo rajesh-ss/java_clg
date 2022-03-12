@@ -18,7 +18,7 @@ class coza{
 				}
 				count++;
 			}
-			else{
+ 			else{
 				System.out.println("\n");
 				count = 1;
 			}

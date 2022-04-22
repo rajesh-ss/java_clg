@@ -1,0 +1,10 @@
+**** Notes ****
+
+
+String: They are immutable. They are literal 
+
+Buffer and Builder: They are mutable.
+
+Difference between BUffer and Builder: 
+                    --> Multithreading will be supported by Builder.
+                    --> Multithreading will not be supported by Buffer

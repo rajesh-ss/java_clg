@@ -119,7 +119,7 @@ class Main {
         seller = search.addSeller_det();
         item = mn.addItems();
 
-        System.out.println("Select the option from the menu");
+        System.out.println("\nSelect the option from the menu");
         System.out.println("1. For displaying all the seller\n2. search the seller by name\n3. search the seller by phone number\n4. search the seller by ID\n5. To check product price\n6. To change Item's destination address");
 
         option = Integer.parseInt(br.readLine());

@@ -11,6 +11,7 @@ public class Buyers {
 	private double Buyer_alternate_phone;
 	private String Buyer_alternate_Address;
 	
+	// The buyers items- it's object of items
 	private ArrayList<Items> itemsObj = new ArrayList<Items>();
 	
 	
@@ -78,7 +79,6 @@ public class Buyers {
 	}
 
 	public void buyerItemsHis(){
-
 
 		System.out.println("your overall item purchases are\n");
 		

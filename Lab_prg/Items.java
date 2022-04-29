@@ -9,6 +9,8 @@ public class Items {
 	private String Item_category;
 	private String Item_ID;
 	private String seller_ID;
+
+	
 	//private String Buyer_ID;
 	private StringBuffer Adress_origin;
 	private StringBuffer Address_destination;

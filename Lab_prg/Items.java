@@ -9,7 +9,7 @@ public class Items {
 	private String Item_category;
 	private String Item_ID;
 	private String seller_ID;
-
+    private final int GST_per = 18; 
 	
 	//private String Buyer_ID;
 	private StringBuffer Adress_origin;
@@ -17,7 +17,7 @@ public class Items {
 	private double Item_weight;
 	private double Item_price;
 		
-	public String Item_standards = "ISO-9001-2000";
+	public final String Item_standards = "ISO-9001-2000";
 
 
 	
@@ -25,6 +25,11 @@ public class Items {
 	// Constructor chaining (default constructor will initialise default values)
 	public Items(){
 		this("", "", "", "", "", null, null, 0.0, 0.0);
+	}
+
+    // we don't want to alter the gst price and don't want inherited classes to access this 
+	final void cal_pr(double Item_price){
+        this.Item_price = (Item_price * (GST_per)/100) + Item_price;
 	}
 
 
@@ -40,7 +45,8 @@ public class Items {
 		this.Adress_origin = Adress_origin;
 		this.Address_destination = Address_destination;
 		this.Item_weight = Item_weight;
-		this.Item_price = Item_price;
+		cal_pr(Item_price);
+		//this.Item_price = (Item_price * (GST_per)/100) + Item_price;
 	}
 
 	public String getItem_name() {

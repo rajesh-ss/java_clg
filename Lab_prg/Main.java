@@ -1,6 +1,13 @@
 import java.io.*;
+import java.util.*;
 
-
+class invalidCmdArg extends Exception {
+    public invalidCmdArg(String s)
+    {
+        // Call constructor of parent Exception
+        super(s);
+    }
+}
 
 class Main {
 
@@ -8,7 +15,7 @@ class Main {
     static{
 
         System.out.print("\n\n");
-        System.out.print("Welcome to the Supply chain Service :)");
+        System.out.print("Welcome to the Supply chain Service :)\n\n");
 
     }
 
@@ -110,6 +117,7 @@ class Main {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         Main mn = new Main();
+        String item_id = "";
         int option = 0;
         String orgaName = null;
         long ph = 0;
@@ -118,11 +126,29 @@ class Main {
         Items[] item = new Items[4];
         seller = search.addSeller_det();
         item = mn.addItems();
+        ArrayList<Delivery_person> dp = new ArrayList<Delivery_person>();
 
-        System.out.println("\nSelect the option from the menu");
-        System.out.println("1. For displaying all the seller\n2. search the seller by name\n3. search the seller by phone number\n4. search the seller by ID\n5. To check product price\n6. To change Item's destination address");
+        try{
+            option = Integer.parseInt(args[0]);
+            if(option<0 || option>7){
+                throw new invalidCmdArg("Invalid option selected");
+            }
+        }
+        catch(invalidCmdArg exp){
 
-        option = Integer.parseInt(br.readLine());
+            System.out.println("Invalid option");
+        }
+        
+        catch(NumberFormatException exp){
+                  
+                System.out.println(exp);
+                System.out.println("\nSelect the option from the menu");
+                System.out.println("1. For displaying all the seller\n2. search the seller by name\n3. search the seller by phone number\n4. search the seller by ID\n5. To check product price\n6. To change Item's destination address\n7. Display Delivery person");
+                option = Integer.parseInt(br.readLine());
+        }
+       
+  
+
 
         switch(option){
 
@@ -149,11 +175,24 @@ class Main {
                     break;
             case 5:
                     item = mn.addItems();
+                    System.out.println("Enter the product ID");
+                    item_id = br.readLine();
+
+                    for(int i=0; i< 2; i+=1){
+
+                        if(item_id.equals(item[i].getItem_ID())){
+
+                            System.out.println("Item Name:\t"+item[i].getItem_name());
+                            System.out.println("Item ID:\t"+item[i].getItem_ID());
+                            System.out.println("Item Price:\t"+item[i].getItem_price());
+                    } 
+
+                }
                     break;
 
             case 6:
 
-                String item_id = "";
+                //String item_id = "";
 /*                 System.out.println("Enter fo which item you ean to change the destination address");
                 for(int i=0; i< 4; i+=1){
                     System.out.println("Item Name:\t"+item[i].getItem_name());
@@ -172,6 +211,20 @@ class Main {
 
                 }
                
+                break;
+            case 7:
+                System.out.println("Displaying all the Delivery person Details\n");
+                dp.add(new Delivery_person("DEL_1740", "Manish", "delivery", "vijaya nagar", 20, 3));
+                dp.add(new Delivery_person("DEL_1741", "Sathish", "delivery", "moovendar nagar", 25, 8));
+                dp.add(new Delivery_person("DEL_1740", "Ramesh", "delivery", "vijaya nagar", 10, 2));
+                System.out.println("-------------------------------------------------------------");
+
+                for (int i = 0; i < dp.size(); i++) {
+			         System.out.println("Employee ID: "+dp.get(i).Employee_ID);
+                     System.out.println("Employee Name: "+dp.get(i).Employee_name);
+                     System.out.println("\n");
+    	        }
+                System.out.print("-------------------------------------------------------------");
                 break;
             default:
                 System.out.println("You have entered invalid option :/");
